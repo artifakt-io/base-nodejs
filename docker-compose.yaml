@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    image: base-nodejs:latest
+    ports:
+      - "8000:80"
+    volumes:
+      - "data:/data"
+    environment:
+      NODEJS_FOO: "BAR"
+
+volumes:
+  data:

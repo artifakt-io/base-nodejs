@@ -15,6 +15,7 @@ WORKDIR=/var/www/html/public
 
 env
 
+mkdir -p $WORKDIR
 curl -sSLO https://gitlab.com/djalal/static-page/-/archive/main/${ARCHIVE_FILE}.tar.gz && \
   tar -xzf ${ARCHIVE_FILE}.tar.gz -C /tmp && \
   mv /tmp/${ARCHIVE_FILE}/* ${WORKDIR} && \

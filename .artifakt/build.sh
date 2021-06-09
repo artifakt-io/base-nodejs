@@ -10,7 +10,7 @@ echo "------------------------------------------------------------"
 
 RUNTIME_NAME="NodeJs"
 RUNTIME_LOGO="nodejs.svg"
-ARCHIVE_FILE=static-page-main
+ARCHIVE_FILE=main
 WORKDIR=/var/www/html/public
 
 env

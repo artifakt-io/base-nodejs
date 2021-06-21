@@ -23,3 +23,4 @@ RUN  if [ -d .artifakt ]; then cp -rp /var/www/html/.artifakt /.artifakt/; fi
 #RUN --mount=source=artifakt-custom-build-args,target=/tmp/build-args \
 RUN    if [ -f /tmp/build-args ]; then source /tmp/build-args; fi && \
     if [ -f /.artifakt/build.sh ]; then /.artifakt/build.sh; fi
+

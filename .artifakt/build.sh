@@ -8,21 +8,21 @@ echo "The following build args are available:"
 env
 echo "------------------------------------------------------------"
 
+WORKDIR=/var/www/html
+
 RUNTIME_NAME="NodeJs"
 RUNTIME_LOGO="nodejs.svg"
-ARCHIVE_FILE=main
-WORKDIR=/var/www/html/public
+REPO_NAME=base-html
+REPO_BRANCH=main
+ARCHIVE_FILE=$REPO_NAME-$REPO_BRANCH
 
-env
+curl -sSLO https://github.com/artifakt-io/${REPO_NAME}/archive/refs/heads/${REPO_BRANCH}.tar.gz && \
+	tar -xzf ${REPO_BRANCH}.tar.gz -C /tmp && \
+	mv /tmp/${ARCHIVE_FILE}/* ${WORKDIR}/public && \
+	chown -R www-data:www-data ${WORKDIR} && \
+	rm ${REPO_BRANCH}.tar.gz
 
-mkdir -p $WORKDIR
-curl -sSLO https://github.com/artifakt-io/base-html/archive/refs/heads/${ARCHIVE_FILE}.tar.gz && \
-  tar -xzf ${ARCHIVE_FILE}.tar.gz -C /tmp && \
-  mv /tmp/${ARCHIVE_FILE}/* ${WORKDIR} && \
-  chown -R www-data:www-data ${WORKDIR} && \
-  rm ${ARCHIVE_FILE}.tar.gz
-
-sed -i "s/__RUNTIME_NAME__/${RUNTIME_NAME}/" ${WORKDIR}/index.html
-sed -i "s/__RUNTIME_LOGO__/${RUNTIME_LOGO}/" ${WORKDIR}/index.html
+sed -i "s/__RUNTIME_NAME__/${RUNTIME_NAME}/" ${WORKDIR}/public/index.html
+sed -i "s/__RUNTIME_LOGO__/${RUNTIME_LOGO}/" ${WORKDIR}/public/index.html
 
 echo ">>>>>>>>>>>>>> END CUSTOM BUILD SCRIPT <<<<<<<<<<<<<<<<< "

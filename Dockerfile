@@ -1,4 +1,4 @@
-FROM registry.artifakt.io/node:12
+FROM registry.artifakt.io/node:14
 
 WORKDIR /var/www/html/
 
